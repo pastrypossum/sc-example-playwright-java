@@ -45,7 +45,7 @@ Run the following command from the project directory to serve the reports withou
 ```
 mvn io.qameta.allure:allure-maven:serve
 ```
-
+View
 
 ## Help
 

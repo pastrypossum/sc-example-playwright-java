@@ -57,43 +57,43 @@ public class ConfigureDeploymentTests extends PlaywrightRunner {
     }
 
     @Step("Verify the deployment job response")
-    public void verifyDeploymentJobResponse(ServiceDeploymentResponse serviceDeploymentJob, ServiceDeploymentRequest defaultRequest) {
+    public void verifyDeploymentJobResponse(ServiceDeploymentResponse actualJob, ServiceDeploymentRequest expectedJob) {
 
         SoftAssertions.assertSoftly(softly -> {
 
-            softly.assertThat(serviceDeploymentJob.success())
-                    .withFailMessage("Success expected true but was " + serviceDeploymentJob.success())
+            softly.assertThat(actualJob.success())
+                    .withFailMessage("Success expected true but was " + actualJob.success())
                     .isEqualTo(true);
-            softly.assertThat(serviceDeploymentJob.deploymentId())
+            softly.assertThat(actualJob.deploymentId())
                     .withFailMessage("Deployment ID expected to be not null but was null")
                     .isNotNull();
-            softly.assertThat(serviceDeploymentJob.serviceName())
-                    .withFailMessage("Service name expected to be " + defaultRequest.getServiceName() + " but was " + serviceDeploymentJob.serviceName())
-                    .isEqualTo(defaultRequest.getServiceName());
-            softly.assertThat(serviceDeploymentJob.region())
-                    .withFailMessage("Region expected to be " + defaultRequest.getRegion() + " but was " + serviceDeploymentJob.region())
-                    .isEqualTo(defaultRequest.getRegion());
-            softly.assertThat(serviceDeploymentJob.priority())
-                    .withFailMessage("Priority expected to be " + defaultRequest.getPriority() + " but was " + serviceDeploymentJob.priority())
-                    .isEqualTo(defaultRequest.getPriority());
-            softly.assertThat(serviceDeploymentJob.alertsEnabled())
-                    .withFailMessage("Alerts enabled expected to be " + defaultRequest.isAlertsEnabled() + " but was " + serviceDeploymentJob.alertsEnabled())
-                    .isEqualTo(defaultRequest.isAlertsEnabled());
-            softly.assertThat(serviceDeploymentJob.deploymentWindow())
-                    .withFailMessage("Deployment window expected to be " + defaultRequest.getDeploymentWindow() + " but was " + serviceDeploymentJob.deploymentWindow())
-                    .isEqualTo(defaultRequest.getDeploymentWindow());
-            softly.assertThat(serviceDeploymentJob.alertThreshold())
-                    .withFailMessage("Alert threshold expected to be " + defaultRequest.getAlertThreshold() + " but was " + serviceDeploymentJob.alertThreshold())
-                    .isEqualTo(defaultRequest.getAlertThreshold());
-            softly.assertThat(serviceDeploymentJob.notificationChannels())
-                    .withFailMessage("Notification channels expected to be " + defaultRequest.getNotificationChannels() + " but was " + serviceDeploymentJob.notificationChannels())
-                    .isEqualTo(defaultRequest.getNotificationChannels());
-            softly.assertThat(serviceDeploymentJob.accessRoles())
-                    .withFailMessage("Access roles expected to be " + defaultRequest.getAccessRoles() + " but was " + serviceDeploymentJob.accessRoles())
-                    .isEqualTo(defaultRequest.getAccessRoles());
-            softly.assertThat(serviceDeploymentJob.deploymentNotes())
-                    .withFailMessage("Deployment notes expected to be " + defaultRequest.getDeploymentNotes() + " but was " + serviceDeploymentJob.deploymentNotes())
-                    .isEqualTo(defaultRequest.getDeploymentNotes());
+            softly.assertThat(actualJob.serviceName())
+                    .withFailMessage("Service name expected to be " + expectedJob.getServiceName() + " but was " + actualJob.serviceName())
+                    .isEqualTo(expectedJob.getServiceName());
+            softly.assertThat(actualJob.region())
+                    .withFailMessage("Region expected to be " + expectedJob.getRegion() + " but was " + actualJob.region())
+                    .isEqualTo(expectedJob.getRegion());
+            softly.assertThat(actualJob.priority())
+                    .withFailMessage("Priority expected to be " + expectedJob.getPriority() + " but was " + actualJob.priority())
+                    .isEqualTo(expectedJob.getPriority());
+            softly.assertThat(actualJob.alertsEnabled())
+                    .withFailMessage("Alerts enabled expected to be " + expectedJob.isAlertsEnabled() + " but was " + actualJob.alertsEnabled())
+                    .isEqualTo(expectedJob.isAlertsEnabled());
+            softly.assertThat(actualJob.deploymentWindow())
+                    .withFailMessage("Deployment window expected to be " + expectedJob.getDeploymentWindow() + " but was " + actualJob.deploymentWindow())
+                    .isEqualTo(expectedJob.getDeploymentWindow());
+            softly.assertThat(actualJob.alertThreshold())
+                    .withFailMessage("Alert threshold expected to be " + expectedJob.getAlertThreshold() + " but was " + actualJob.alertThreshold())
+                    .isEqualTo(expectedJob.getAlertThreshold());
+            softly.assertThat(actualJob.notificationChannels())
+                    .withFailMessage("Notification channels expected to be " + expectedJob.getNotificationChannels() + " but was " + actualJob.notificationChannels())
+                    .isEqualTo(expectedJob.getNotificationChannels());
+            softly.assertThat(actualJob.accessRoles())
+                    .withFailMessage("Access roles expected to be " + expectedJob.getAccessRoles() + " but was " + actualJob.accessRoles())
+                    .isEqualTo(expectedJob.getAccessRoles());
+            softly.assertThat(actualJob.deploymentNotes())
+                    .withFailMessage("Deployment notes expected to be " + expectedJob.getDeploymentNotes() + " but was " + actualJob.deploymentNotes())
+                    .isEqualTo(expectedJob.getDeploymentNotes());
             softly.assertAll();
         });
     }

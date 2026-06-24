@@ -30,7 +30,7 @@ public class SchedulePage {
         this.backButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("← Back"));
     }
 
-    @Step("Fill in schedule details based on {1}")
+    @Step("Fill in schedule details")
     public SchedulePage fillDetails(ServiceDeploymentRequest deploy) {
 
         deploymentWindow.fill(deploy.getDeploymentWindow());

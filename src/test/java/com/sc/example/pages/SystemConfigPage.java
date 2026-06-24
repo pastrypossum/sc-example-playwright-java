@@ -28,7 +28,7 @@ public class SystemConfigPage {
         this.continueButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Next →"));
     }
 
-    @Step("Fill in system configuration details based on {1}")
+    @Step("Fill in system configuration details")
     public SystemConfigPage fillDetails(ServiceDeploymentRequest deploy) {
 
         serviceName.fill(deploy.getServiceName());

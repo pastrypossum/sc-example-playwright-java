@@ -32,7 +32,7 @@ public class PermissionPage {
         this.backButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("← Back"));
     }
 
-    @Step("Fill in schedule details based on {1}")
+    @Step("Fill in permission details")
     public PermissionPage fillDetails(ServiceDeploymentRequest deploy) {
 
         if(!admin.isChecked() && deploy.getAccessRoles().contains("Admin"))
