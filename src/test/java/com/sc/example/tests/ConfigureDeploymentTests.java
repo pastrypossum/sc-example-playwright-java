@@ -32,9 +32,9 @@ public class ConfigureDeploymentTests extends PlaywrightRunner {
         example.setPriority("1");
         example.setAlertsEnabled(true);
         example.setDeploymentWindow("2026-06-28T02:00");
-        example.setAlertThreshold("1");
-        example.setNotificationChannels(new ArrayList<>(Arrays.asList("Email")));
-        example.setAccessRoles(new ArrayList<>(Arrays.asList("Admin")));
+        example.setAlertThreshold("3");
+        example.setNotificationChannels(new ArrayList<>(Arrays.asList("Email","Slack")));
+        example.setAccessRoles(new ArrayList<>(Arrays.asList("Admin","Developer")));
         example.setDeploymentNotes("This is an example test");
         example.setConfirmation(true);
 
@@ -48,6 +48,24 @@ public class ConfigureDeploymentTests extends PlaywrightRunner {
 
         ServiceDeploymentResponse result = converToDeploymentResponse(response);
         verifyDeploymentJobResponse(result, example);
+
+        PlaywrightAssertions.assertThat(page.getByText(result.deploymentId())).isVisible();
+        PlaywrightAssertions.assertThat(page.getByText(example.getServiceName())).isVisible();
+        PlaywrightAssertions.assertThat(page.getByText(example.getRegion())).isVisible();
+//        Value not unique enough
+//        strict mode violation: getByText("1") resolved to 4 elements:
+//        PlaywrightAssertions.assertThat(page.getByText(result.priority())).isVisible();
+//        PlaywrightAssertions.assertThat(page.getByText(result.alertThreshold())).isVisible();
+        PlaywrightAssertions.assertThat(page.getByText(example.getDeploymentNotes())).isVisible();
+        PlaywrightAssertions.assertThat(page.getByText(
+                example.isAlertsEnabled() ? "Yes" : "No")).isVisible();
+
+        example.getNotificationChannels().forEach(channel -> {
+            PlaywrightAssertions.assertThat(page.getByText(channel)).isVisible();
+        });
+        example.getAccessRoles().forEach(role -> {
+            PlaywrightAssertions.assertThat(page.getByText(role)).isVisible();
+        });
     }
 
     private ServiceDeploymentResponse converToDeploymentResponse(Response response) {
